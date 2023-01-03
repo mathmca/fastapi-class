@@ -1,9 +1,9 @@
-from .database import Base
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
 from sqlalchemy.sql.expression import text
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql.sqltypes import TIMESTAMP
 
+from .database import Base
 
 
 class Posts(Base):
@@ -28,6 +28,7 @@ class User(Base):
     created_at = Column(TIMESTAMP(timezone=True), nullable=False, 
                         server_default=text("NOW()"))
     
+    
 class Likes(Base):
     __tablename__ = "likes"
     
@@ -37,6 +38,3 @@ class Likes(Base):
                       primary_key=True, nullable=False)
     created_at = Column(TIMESTAMP(timezone=True), nullable=False,
                         server_default=text("NOW()"))
-    
-    
-    

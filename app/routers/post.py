@@ -1,17 +1,16 @@
 from fastapi import FastAPI, Response, status, HTTPException, Depends, APIRouter
-from .. import models, schemas, ouauth2
 # from typing import Optional, List - check python version
 from sqlalchemy.orm import Session
-from ..database import get_db
 from sqlalchemy import func
 
+from ..database import get_db
+from .. import models, schemas, ouauth2
 
 
 router = APIRouter(
     prefix="/posts",
     tags=['Posts']
 )
-
 
 
 @router.post("/", status_code=status.HTTP_201_CREATED, response_model=schemas.Post)
@@ -31,6 +30,7 @@ def create_posts(post: schemas.CreatePost, db: Session = Depends(get_db),
     db.refresh(new_post) #Retrieve and store in new_post (RETURNIG *)
     
     return  new_post
+
 
 @router.get("/", response_model=list[schemas.PostOut])
 def get_posts(db: Session = Depends(get_db),
@@ -52,6 +52,7 @@ def get_posts(db: Session = Depends(get_db),
         ).limit(limit).offset(skip).all()
 
     return posts
+
 
 @router.get("/{id}", response_model=schemas.PostOut)
 def get_post(id: int, response: Response, db: Session = Depends(get_db)):
@@ -76,6 +77,7 @@ def get_post(id: int, response: Response, db: Session = Depends(get_db)):
         )
     
     return post
+
 
 @router.delete("/{id}", status_code=status.HTTP_204_NO_CONTENT)
 def delete_post(id: int, db: Session = Depends(get_db),
@@ -103,6 +105,7 @@ def delete_post(id: int, db: Session = Depends(get_db),
     db.commit()
     
     return Response(status_code=status.HTTP_204_NO_CONTENT)
+
 
 @router.put("/{id}", response_model=schemas.Post)
 def update_post(id: int, updated_post: schemas.CreatePost, db: Session = Depends(get_db),
