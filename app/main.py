@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from .routers import post, user, auth, like
-#from .database import engine
+# from .database import engine
 
 # models.Base.metadata.create_all(bind=engine)-- not necessary with alembic installed
 
@@ -27,4 +27,4 @@ app.include_router(like.router)
 
 @app.get('/')
 def root():
-    return "HELLOW"
+    return {'message': 'hellow'}
