@@ -1,7 +1,7 @@
 name: Build and Deploy
 
 on: [push, pull_request]
-# 18:18:15
+# 18:22:15
 jobs:
   build:
     environment:
@@ -12,6 +12,9 @@ jobs:
       DATABASE_PASSWORD: ${{secrets.DATABASE_PASSWORD}}
       DATABASE_NAME: ${{secrets.DATABASE_NAME}}
       DATABASE_USERNAME: ${{secrets.DATABASE_USERNAME}}
+      DATABASE_ACCESS_TOKEN_EXPIRE_MINUTES: ${{secrets.ACCESS_TOKEN_EXPIRE_MINUTES}}
+      ALGORITHM: ${{secrets.ALGORITHM}}
+      SECRET_KEY: ${{secres.SECRET_KEY}}
     services:
       postgres:
         image: postgres

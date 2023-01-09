@@ -7,7 +7,7 @@ import pytest
 from app.main import app
 from app.config import settings
 from app.database import get_db, engine, Base
-from app import models, schemas
+from app import models
 from app.ouauth2 import create_access_token
 
 
