@@ -28,7 +28,6 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-tries 5
-          
     runs-on: ubuntu-latest
     steps:
       - name: pulling git repo
