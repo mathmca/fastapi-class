@@ -15,6 +15,7 @@ jobs:
       ACCESS_TOKEN_EXPIRE_MINUTES: ${{secrets.ACCESS_TOKEN_EXPIRE_MINUTES}}
       ALGORITHM: ${{secrets.ALGORITHM}}
       SECRET_KEY: ${{secrets.SECRET_KEY}}
+
     services:
       postgres:
         image: postgres
@@ -27,7 +28,7 @@ jobs:
           --health-cmd pg_isready
           --health-interval 10s
           --health-timeout 5s
-          --health-tries 5
+          --health-retries 5
     runs-on: ubuntu-latest
     steps:
       - name: pulling git repo
