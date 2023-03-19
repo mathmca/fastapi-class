@@ -1,4 +1,4 @@
 # Building an API with FastAPI
-*Studies Sessions*
+*Study Sessions*
 
 Social app backend with a system for registration and posting
